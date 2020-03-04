@@ -67,8 +67,6 @@ class CounterButton extends Component{
   constructor(){
     super();
     this.action=this.action.bind(this);
-    this.increment=this.increment.bind(this);
-    this.decrement=this.decrement.bind(this);
   }
 
   render()
@@ -78,6 +76,8 @@ class CounterButton extends Component{
       <div className='mainDiv'>
         <div className='buttonDiv'>
           <button onClick={this.action} className='button'>{this.props.operation}{this.props.by}</button>
+          {/*to use arguments in onclick call use arrow function
+          */}
         </div>
         <br />
        
@@ -88,19 +88,9 @@ class CounterButton extends Component{
   action(){
     console.log("operation: " + this.props.operation);
     if(this.props.operation === "+")
-      this.increment();
+      this.props.incrementMethod(this.props.by);
     else
-      this.decrement();
-  }
-
-  increment()
-  {
-    this.props.incrementMethod(this.props.by);
-  }
-  
-  decrement()
-  {
-    this.props.decrementMethod(this.props.by);
+      this.props.decrementMethod(this.props.by);
   }
 
 }
